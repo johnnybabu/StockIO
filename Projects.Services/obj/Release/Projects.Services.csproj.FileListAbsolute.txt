@@ -1,0 +1,15 @@
+C:\Z_NagendraFiles\StockIO\StockIO\Projects.Services\bin\Release\Projects.Services.dll.config
+C:\Z_NagendraFiles\StockIO\StockIO\Projects.Services\bin\Release\Projects.Services.dll
+C:\Z_NagendraFiles\StockIO\StockIO\Projects.Services\bin\Release\Projects.Services.pdb
+C:\Z_NagendraFiles\StockIO\StockIO\Projects.Services\bin\Release\Projects.Data.dll
+C:\Z_NagendraFiles\StockIO\StockIO\Projects.Services\bin\Release\Projects.Entities.dll
+C:\Z_NagendraFiles\StockIO\StockIO\Projects.Services\bin\Release\Projects.Library.dll
+C:\Z_NagendraFiles\StockIO\StockIO\Projects.Services\bin\Release\EntityFramework.dll
+C:\Z_NagendraFiles\StockIO\StockIO\Projects.Services\bin\Release\Projects.Data.pdb
+C:\Z_NagendraFiles\StockIO\StockIO\Projects.Services\bin\Release\Projects.Data.dll.config
+C:\Z_NagendraFiles\StockIO\StockIO\Projects.Services\bin\Release\Projects.Entities.pdb
+C:\Z_NagendraFiles\StockIO\StockIO\Projects.Services\bin\Release\Projects.Library.pdb
+C:\Z_NagendraFiles\StockIO\StockIO\Projects.Services\bin\Release\EntityFramework.xml
+C:\Z_NagendraFiles\StockIO\StockIO\Projects.Services\obj\Release\Projects.Services.csprojResolveAssemblyReference.cache
+C:\Z_NagendraFiles\StockIO\StockIO\Projects.Services\obj\Release\Projects.Services.dll
+C:\Z_NagendraFiles\StockIO\StockIO\Projects.Services\obj\Release\Projects.Services.pdb

@@ -1,0 +1,380 @@
+﻿<style>
+    .anchorhover:hover {
+        color: deepskyblue !important;
+    }
+
+    #myhr1 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border: 0;
+        border-top: 2px solid #105167;
+    }
+
+    #myhr2 {
+        margin-top: 5px;
+        margin-bottom: 35px;
+        border: 0;
+        border-top: 2px solid #105167;
+    }
+</style>
+<div class="row" ng-show="addStockForm">
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h4>Enter Stock Details</h4>
+                <form name="newStockForm" novalidate ng-submit="SaveStockDetails()" style="margin-bottom:0px;">
+                    <div id="inputContainer">
+                        <md-content layout-padding>
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <md-input-container class="md-block">
+                                        <label>Invoice No</label>
+                                        <input name="invoice_no" ng-model="stock.invoice_no" required>
+                                        <div ng-messages="newStockForm.invoice_no.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">* Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Valid Range: 1 to 30 chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-lg-5">
+                                    <md-datepicker class="dp-left-margin" ng-model="stock.purchase_date" md-placeholder="Purchase Date" md-open-on-focus></md-datepicker>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-10">
+                                    <md-input-container class="md-block">
+                                        <label>Supplier</label>
+                                        <input name="supplier" ng-model="stock.supplier" required>
+                                        <div ng-messages="newStockForm.supplier.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">* Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Valid Range: 1 to 30 chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <hr id="myhr1" />
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <md-input-container class="md-block">
+                                        <label>Product</label>
+                                        <md-select name="product_id" ng-model="product_id" ng-change="">
+                                            <md-option ng-repeat="product in productsList" ng-value="product.id">
+                                                {{product.product_name}}
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-messages="newStockForm.product_code.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">* Mandatory.</div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-lg-5">
+                                    <md-input-container class="md-block">
+                                        <label>Price</label>
+                                        <input type="number" name="price" ng-model="price">
+                                        <div ng-messages="newStockForm.price.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">* Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Valid Range: 1 to 30 chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <md-input-container class="md-block">
+                                        <label>Brand Name</label>
+                                        <input name="brand_name" ng-model="brand_name">
+                                        <div ng-messages="newStockForm.brand_name.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">* Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Valid Range: 1 to 30 chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-lg-5">
+                                    <md-input-container class="md-block">
+                                        <label>Model Name</label>
+                                        <input name="model_name" ng-model="model_name">
+                                        <div ng-messages="newStockForm.model_name.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">* Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Valid Range: 1 to 30 chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <md-input-container class="md-block">
+                                        <label>Units In</label>
+                                        <md-select name="units_in" ng-model="units_in" ng-change="">
+                                            <md-option ng-repeat="unit in unitsList" ng-value="unit">
+                                                {{unit}}
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-messages="newStockForm.units_in.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">* Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Valid Range: 1 to 30 chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-lg-5">
+                                    <md-input-container class="md-block">
+                                        <label>Quantity</label>
+                                        <input type="number" name="quantity" ng-model="quantity">
+                                        <div ng-messages="newStockForm.quantity.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">* Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Valid Range: 1 to 30 chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-10" style="text-align:right;">
+                                    <input type="button" class="btn btn-sm btn-primary" ng-click="addItem()" value="Add Item" />
+                                </div>
+                            </div>
+                            <hr id="myhr2" />
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    Items Total:{{totalAmount}}
+                                </div>
+                                <div class="col-lg-2">
+                                    <md-checkbox ng-model="stock.items_due" aria-label="Due">
+                                        Due
+                                    </md-checkbox>
+                                </div>
+                                <div class="col-lg-3">
+                                    <md-input-container class="md-block">
+                                        <label>Due Amount</label>
+                                        <input type="number" name="itmes_due_amount" ng-model="stock.itmes_due_amount">
+                                        <div ng-messages="newStockForm.itmes_due_amount.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">* Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Valid Range: 1 to 30 chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <md-input-container class="md-block">
+                                        <label>Transport Charges</label>
+                                        <input type="number" name="transport_charges" ng-model="stock.transport_charges">
+                                        <div ng-messages="newStockForm.transport_charges.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">* Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Valid Range: 1 to 30 chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-lg-2">
+                                    <md-checkbox ng-model="stock.trans_due" aria-label="Due">
+                                        Due
+                                    </md-checkbox>
+                                </div>
+                                <div class="col-lg-3">
+                                    <md-input-container class="md-block">
+                                        <label>Due Amount</label>
+                                        <input type="number" name="trans_due_amount" ng-model="stock.trans_due_amount">
+                                        <div ng-messages="newStockForm.trans_due_amount.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">* Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Valid Range: 1 to 30 chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <md-input-container class="md-block">
+                                        <label>Labour Charges</label>
+                                        <input type="number" name="labour_charges" ng-model="stock.labour_charges">
+                                        <div ng-messages="newStockForm.labour_charges.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">* Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Valid Range: 1 to 30 chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-lg-2">
+                                    <md-checkbox ng-model="stock.labor_due" aria-label="Due">
+                                        Due
+                                    </md-checkbox>
+                                </div>
+                                <div class="col-lg-3">
+                                    <md-input-container class="md-block">
+                                        <label>Due Amount</label>
+                                        <input type="number" name="labor_due_amount" ng-model="stock.labor_due_amount">
+                                        <div ng-messages="newStockForm.labor_due_amount.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">* Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Valid Range: 1 to 30 chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <md-input-container class="md-block">
+                                        <label>Other Charges</label>
+                                        <input type="number" name="other_charges" ng-model="stock.other_charges">
+                                        <div ng-messages="newStockForm.other_charges.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">* Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Valid Range: 1 to 30 chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-lg-2">
+                                    <md-checkbox ng-model="stock.other_due" aria-label="Due">
+                                        Due
+                                    </md-checkbox>
+                                </div>
+                                <div class="col-lg-3">
+                                    <md-input-container class="md-block">
+                                        <label>Due Amount</label>
+                                        <input type="number" name="other_due_amount" ng-model="stock.other_due_amount">
+                                        <div ng-messages="newStockForm.other_due_amount.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">* Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Valid Range: 1 to 30 chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-10" style="text-align:right;">
+                                    <button class="btn btn-primary" type="submit">Save Stock</button>
+                                </div>
+                                <div class="col-lg-2" style="text-align:right;">
+                                    <input type="button" value="Cancel" ng-click="CancelAddStock()" class="btn btn-danger" />
+                                </div>
+                            </div>
+                        </md-content>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h4>Invoice Details</h4>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <span style="color:#073140;font-weight:600;">Invocie No :</span>
+                        <span style="color:red;">{{stock.invoice_no}}</span>
+                    </div>
+                    <div class="col-lg-6">
+                        <span style="color:#073140;font-weight:600;text-align:right;">Purchase Date :</span>
+                        <span style="color:blue;">{{stock.purchase_date| date :  "MMM d, y"}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <span style="color:#073140;font-weight:600;">Supplier :</span>
+                        <span style="color:blue;">{{stock.supplier}}</span>
+                    </div>
+                </div>
+                <hr style="border-top: 1px solid #073140;margin-bottom:2px;" />
+                <div class="row" style="font-weight:600;">
+                    <div class="col-lg-1">Sno</div>
+                    <div class="col-lg-2">Item</div>
+                    <div class="col-lg-2">Brand/Model</div>
+                    <div class="col-lg-3">Quantity</div>
+                    <div class="col-lg-1">Price</div>
+                    <div class="col-lg-2">Amount</div>
+                    <div class="col-lg-1"></div>
+                </div>
+                <hr style="border-top: 1px solid #073140;margin-top:2px" />
+                <div style="color:blue;" class="row" ng-repeat="item in itemsList">
+                    <div class="col-lg-1">{{$index+1}}</div>
+                    <div class="col-lg-2">{{item.product_id}}</div>
+                    <div class="col-lg-2">{{item.brand_name}}</div>
+                    <div class="col-lg-3">{{item.quantity}} {{units_in}}</div>
+                    <div class="col-lg-1">{{item.price}}</div>
+                    <div class="col-lg-2">{{item.price*item.quantity}}</div>
+                    <div class="col-lg-1"><span style="color:orangered;" ng-click="removeItem($index,item)"><i class="fa fa-trash" aria-hidden="true"></i></span></div>
+                </div>
+                <hr style="border-top: 1px solid #073140;margin-top:2px" />
+                <div class="row">
+                    <div class="col-lg-12" style="text-align:right;font-weight:600;">
+                        Total Amount:Rs
+                        <span style="color:blue;">{{totalAmount}}/-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    Raw Stock List
+                    <input type="button" value="Add Stock" style="float:right;" class="btn btn-info" ng-click="ShowAddStockForm()"/>
+                </h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered table-condensed">
+                    <thead style="color:white;background-color:#11273c;">
+                        <tr>
+                            <th>Sno</th>
+                            <th>Invoice</th>
+                            <th>Purchase Date</th>
+                            <th>Supplier</th>
+                            <th>Product</th>
+                            <th>Brand</th>
+                            <th>Model</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Units</th>
+                            <th>Amount</th>
+                            <th>Items Due</th>
+                            <th>Transport Due</th>
+                            <th>Labours Due</th>
+                            <th>Others Due</th>
+                        </tr>
+                    </thead>
+                    <tbody style="background-color:aliceblue;">
+                        <tr ng-repeat="stock in Stocklist">
+                            <td>{{$index+1}}</td>
+                            <td>{{stock.invoice_no}}</td>
+                            <td>{{stock.purchase_date| date :  "MMM d, y"}}</td>
+                            <td>{{stock.supplier}}</td>
+                            <td>{{getProductName(stock.product_id)}}</td>
+                            <td>{{stock.brand_name}}</td>
+                            <td>{{stock.model_name}}</td>
+                            <td>{{stock.price}}</td>
+                            <td>{{stock.quantity}}</td>
+                            <td>{{stock.units_in}}</td>
+                            <td>{{stock.price*stock.quantity}}</td>
+                            <td>{{stock.itmes_due_amount}}</td>
+                            <td>{{stock.trans_due_amount}}</td>
+                            <td>{{stock.labor_due_amount}}</td>
+                            <td>{{stock.other_due_amount}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>

@@ -1,0 +1,140 @@
+﻿<div class="row">
+    <div id="empCodeForm" class="col-lg-10">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <table style="width:100%;">
+                    <tr style="background:none;">
+                        <td style="width:100%">
+                            <h3 class="panel-title">
+                                <a data-toggle="collapse" href="#empCodeDiv" ng-click="toggleEmpCode = !toggleEmpCode">Employee Code</a>
+                            </h3>
+                        </td>
+                        <td style="width:10px">
+                            <a data-toggle="collapse" href="#empCodeDiv" ng-click="toggleEmpCode = !toggleEmpCode">
+                                <span class={{toggleEmpCodeIcon}} style="font-size: 15px; width: 30px; top: 10px;"></span>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="empCodeDiv" class="panel-body">
+                <form name="empCodeForm" style="margin-bottom:0px;">
+                    <div id="inputContainer" ng-cloak>
+                        <md-content layout-padding>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <md-input-container class="md-block">
+                                        <md-checkbox ng-model="empCodeSettings.auto_empcode">
+                                            Auto Employee Code?
+                                        </md-checkbox>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div ng-if="empCodeSettings.auto_empcode" class="row">
+                                <div class="col-md-3">
+                                    <md-input-container class="md-block">
+                                        <label>Employee Code</label>
+                                        <md-icon class="md-dark" style="color:darkorange"><i class="fa fa-braille" style="font-size: 20px;"></i></md-icon>
+                                        <input name="eCode" id="autosave" ng-model="empCodeSettings.emp_code" maxlength="10" style="color:black; font-weight:bold" required>
+                                        <div ng-messages="empCodeForm.eCode.$error" role="alert" class="ng-messages">
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">Range: Max 10 chars.</div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-md-3">
+                                    <md-input-container class="md-block">
+                                        <label>Code Separation</label>
+                                        <md-icon class="md-dark" style="color:darkorange"><i class="fa fa-arrows-h" style="font-size: 20px;"></i></md-icon>
+                                        <input name="eCodeSeparation" id="autosave" ng-model="empCodeSettings.code_seperation" maxlength="1" style="color:black; font-weight:bold" required>
+                                        <div ng-messages="empCodeForm.eCodeSeparation.$error" role="alert" class="ng-messages">
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">Range: Max 1 chars.</div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-md-3">
+                                    <md-input-container class="md-block">
+                                        <label>start from</label>
+                                        <md-icon class="md-dark" style="color:darkorange"><i class="fa fa-sort-numeric-asc" style="font-size: 20px;"></i></md-icon>
+                                        <input name="eCodeNumber" type="number" ng-model="empCodeSettings.emp_num" maxlength="50" style="color:black; font-weight:bold" required>
+                                    </md-input-container>
+                                </div>
+
+                                <!--<div class="col-md-3">
+                                    <md-input-container>
+                                        <label>IsActive</label>
+                                        <md-select ng-model="empCodeSettings.IsActive">
+                                            <md-option ng-value="opt.id" ng-repeat="opt in options">{{ opt.name }}</md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>-->
+
+
+                                <div class="row" style="text-align:center;">
+                                    <button class="btn btn-sm btn-info" ng-click="SaveEmpCodeSettings()" type="submit" style="margin-top: 20px;">Save</button>
+                                </div>
+                            </div>
+
+
+                        </md-content>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">GridView Report Preferences</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-6">
+                <md-input-container>
+                    <label>Select Grid</label>
+                    <md-select name="newComponentsForm" ng-model="grid_id" ng-change="getColumns(grid_id)">
+                        <md-option ng-repeat="grid in gridlist" ng-value="grid.id">
+                            {{grid.grid_name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div class="col-lg-12">
+                <div style="background: #def0f2;border-radius:5px;margin-top: 0px;">
+                    <span style="color:#082733;">Select Fields</span><br />
+                    
+                        <span style="color:white;">
+                            <input type="checkbox" ng-model="selectAll" ng-checked="isSelected" ng-change="selectAllFields(selectAll)">{{SelectAllTog}}<br />
+                        </span>
+                        <!--<span style="color:#082733;padding:4px;" ng-repeat="field in ColumnsList">
+                            <input style="height:18px;width:18px;" type="checkbox" ng-model="checkedStatus" ng-checked="isSelected" ng-change="addOrRemoveField(field,checkedStatus)">{{field}}
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br ng-show="($index+1)%3==0" />
+                        </span>-->
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <span ng-if="($index+1)<=10" style="color:#082733;padding:4px;" ng-repeat="field in ColumnsList">
+                                    <input style="height:18px;width:18px;" type="checkbox" ng-model="checkedStatus" ng-checked="isSelected" ng-change="addOrRemoveField(field,checkedStatus)">{{field}}<br />
+                                </span>
+                            </div>
+                            <div class="col-lg-3">
+                                <span ng-if="($index+1)>10&&($index+1)<=20" style="color:#082733;padding:4px;" ng-repeat="field in ColumnsList">
+                                    <input style="height:18px;width:18px;" type="checkbox" ng-model="checkedStatus" ng-checked="isSelected" ng-change="addOrRemoveField(field,checkedStatus)">{{field}}<br />
+                                </span>
+                            </div>
+                            <div class="col-lg-3">
+                                <span ng-if="($index+1)>20&&($index+1)<=30" style="color:#082733;padding:4px;" ng-repeat="field in ColumnsList">
+                                    <input style="height:18px;width:18px;" type="checkbox" ng-model="checkedStatus" ng-checked="isSelected" ng-change="addOrRemoveField(field,checkedStatus)">{{field}}<br />
+                                </span>
+                            </div>     
+                            <div class="col-lg-3">
+                                <span ng-if="($index+1)>30" style="color:#082733;padding:4px;" ng-repeat="field in ColumnsList">
+                                    <input style="height:18px;width:18px;" type="checkbox" ng-model="checkedStatus" ng-checked="isSelected" ng-change="addOrRemoveField(field,checkedStatus)">{{field}}<br />
+                                </span>
+                            </div>     
+                        </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

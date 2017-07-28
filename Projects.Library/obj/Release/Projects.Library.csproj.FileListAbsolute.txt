@@ -1,0 +1,5 @@
+C:\Z_NagendraFiles\StockIO\StockIO\Projects.Library\bin\Release\Projects.Library.dll
+C:\Z_NagendraFiles\StockIO\StockIO\Projects.Library\bin\Release\Projects.Library.pdb
+C:\Z_NagendraFiles\StockIO\StockIO\Projects.Library\obj\Release\Projects.Library.csprojResolveAssemblyReference.cache
+C:\Z_NagendraFiles\StockIO\StockIO\Projects.Library\obj\Release\Projects.Library.dll
+C:\Z_NagendraFiles\StockIO\StockIO\Projects.Library\obj\Release\Projects.Library.pdb

@@ -1,0 +1,100 @@
+﻿<style>
+    .anchorhover:hover {
+        color: deepskyblue !important;
+    }
+</style>
+<div class="panel-group">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Warehouse Information</h3>
+        </div>
+        <div class="row" style="margin-top:20px;">
+            <div class="col-lg-4">
+                <md-input-container class="md-block">
+                    <label>Select Project</label>
+                    <md-icon class="md-dark" arial-label="project_id" style="color:#ff006e"><i class="fa fa-map-marker" style="font-size: 20px;padding-left: 10px;"></i></md-icon>
+                    <md-select name="project_id" ng-model="projectid" required ng-change="getIndentsByProjId(project_id)">
+                        <md-option ng-repeat="project in projectslists" ng-value="project.id">
+                            {{project.project_name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+        </div>
+        <div class="panel-body">
+            <form>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                        <input type="text" class="form-control" placeholder="Search" ng-model="filterwarehouse">
+                    </div>
+                </div>
+            </form>
+            <table class="table table-bordered table-striped table-hover table-condensed">
+                <thead>
+                    <tr style="background:#e3e3e3;color:white;">
+                        <th colspan="2"></th>
+                        <th style="padding: 0px 0px 0px 0px; margin: -7px 0px 0px 0px; width:20%;">
+                            <select ng-model="search.subcontractor_name" class="form-control" ng-options="sub.subcontractor_name as sub.subcontractor_name  for sub in SubContractorList" style="font-size: 12px;height: 25px;padding: 4px 12px !important;">
+                                <option value="">All</option>
+                            </select>
+                        </th>
+                        <th style="padding: 0px 0px 0px 0px; margin: -7px 0px 0px 0px; width:75%;"></th>
+                    </tr>
+                    <tr style="background:#808080;color:white;">
+                        <th style="width:2%;text-align:center;vertical-align:middle;"></th>
+                        <th style="width:2%;text-align:center;vertical-align:middle;">SNo</th>
+                        <th style="width:11%;text-align:center;vertical-align:middle;">
+                            <a href="#" class="anchorhover" ng-click="sortType = 'subcontractor_name'; sortReverse = !sortReverse" style="color:cornsilk;">
+                                SubContractor
+                            </a>
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tr ng-repeat-start="scList in SubContractorList|filter:{project_id:projectid}:true|filter:filterwarehouse|startFrom: currentPage*pageSize|limitTo:pageSize|orderBy:sortType:sortReverse
+                       |filter:{subcontractor_name: search.subcontractor_name || undefined,}:true">
+                    <td style="width:3%; vertical-align:middle;">
+                        <button ng-click="expanded = !expanded" expand>
+                            <span ng-bind="expanded ? '-' : '+'" style="color:black;"></span>
+                        </button>
+                    </td>
+                    <td style="width:2%;text-align:center;vertical-align:middle;">{{$index+1}}</td>
+                    <td style="width:20%;text-align:left;vertical-align:middle;line-height: 26px;"><b>{{scList.subcontractor_name}}</b><span class="badgeTwo">{{(IndentStatusList|filter:{SubContractor_id:scList.id}:true|filter:{indentstatus:'Approved'}:true).length}}</span></td>
+                    <td style="width:75%;text-align:center;vertical-align:middle;"></td>
+                </tr>
+                <tr ng-repeat-end ng-show="expanded">
+                    <td colspan="4">
+                        <table style=" margin-left: 3%; width: 97%;" class="table table-bordered table-striped table-hover table-condensed">
+                            <thead>
+                                <tr style="background:#106875;color:white;">
+                                    <th style="width:2%;text-align:center;vertical-align:middle;">S.No</th>
+                                    <th style="width:3%;text-align:center;vertical-align:middle;">Indent No.</th>
+                                    <th style="width:4%;text-align:center;vertical-align:middle;">Indent Created Date</th>
+                                    <th style="width:5%;text-align:center;vertical-align:middle;">Status</th>
+                                    <th style="width:5%;text-align:center;vertical-align:middle;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="indentStatus in IndentStatusList|filter:{SubContractor_id:scList.id}:true|filter:{indentstatus:'Approved'}:true">
+                                    <td style="text-align:center;vertical-align:middle;">
+                                        <i style="border-radius:50px; background-color:#0bbbdc; text-align:center; font-weight:bold; border-color:#808080; padding:2px 5px;">{{$index+1}}</i>
+                                    </td>
+                                    <td style="width:2%;text-align:center;vertical-align:middle;">{{indentStatus.indent_no}}</td>
+                                    <td style="width:2%;text-align:center;vertical-align:middle;">{{indentStatus.date_recieved}}</td>
+                                    <td style="width:2%;text-align:center;vertical-align:middle;">{{indentStatus.indentstatus}}</td>
+                                    <td style="width:2%;text-align:center;vertical-align:middle;">
+                                        <button class="btn btn-sm btn-info" ng-click="releasematerialPopUp(indentStatus)" aria-hidden="false">Release Material</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <div>
+                <paginate-bar></paginate-bar>
+            </div>
+        </div>
+    </div>
+</div>

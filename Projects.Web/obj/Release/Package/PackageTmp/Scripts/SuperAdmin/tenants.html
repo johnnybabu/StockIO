@@ -1,0 +1,64 @@
+﻿<div class="page">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">My Tenants</h3>
+        </div>
+        <div class="panel-body" style="padding-right:0px">
+            <div class="row col-md-12" style="">
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                            <input type="text" class="form-control" placeholder="Search" ng-model="searchTenant">
+                        </div>
+                    </div>
+                </form>
+                <table class="table table-bordered table-hover" style="font-size:12px; width:100%">
+                    <tr style="vertical-align:middle">
+                        <th style="width:7%;">Tenant</th>
+                        <th style="width:20%;">Contact</th>
+                        <th style="width:20%;">Address</th>
+                        <th style="width:15%;">Bank A/C Details</th>
+                        <th style="width:5%;">
+                            <a href="#" ng-click="sortType = 'tenant_type'; sortReverse = !sortReverse">
+                                License
+                                <span ng-show="sortType == 'tenant_type' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'tenant_type' && sortReverse" class="fa fa-caret-up"></span>
+                            </a>
+                        </th>
+                        <th style="width:10%;">
+                            <a href="#" ng-click="sortType = 'account_valid_till'; sortReverse = !sortReverse">
+                                Valid Till
+                                <span ng-show="sortType == 'account_valid_till' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'account_valid_till' && sortReverse" class="fa fa-caret-up"></span>
+                            </a>
+                        </th>
+                        <th style="width:3%;">Locked?</th>
+                        <th style="width:5%;">Created Date</th>
+                        <th style="width:5%;">Lock</th>
+                        <th style="width:10%;">Reminder</th>
+                    </tr>
+                    <tr ng-repeat="t in tenants | orderBy:sortType:sortReverse | filter:searchTenant | filter : paginate">
+                        <td>{{t.tenant_name}} <br />{{t.tenant_key}}<br />{{t.domain}}</td>
+                        <td>{{t.contact_person}}<br />Email:{{t.email}} <br />Contact#:{{t.contact_no}}</td>
+                        <td>{{t.address}}, {{t.city}}</td>
+                        <td>A/C#.{{t.bank_account_no}}<br />Bank:{{t.bank_name}} <br />Branch:{{t.bank_branch}}<br />IFSC:{{t.ifsc_code}}</td>
+                        <td>{{t.tenant_type}}</td>
+                        <td>{{t.account_valid_till | date:'dd-MMM-yyyy'}}</td>
+                        <td>{{t.IsLocked}}</td>
+                        <td>{{t.date_created | date:'dd-MMM-yyyy'}}</td>
+                        <td></td>
+                        <td></td>
+                        <!--<td><a href="javascript:;" data-ng-click="DeleteUserList(u)" style="color:#f6bc1b; font-weight:bold; font-size:15px; height:15px;" class="fa fa-times-circle"></a></td>
+                        <td><a href="javascript:;" data-ng-click="openAddModulesDialog(p)" style="color:#f6bc1b; font-weight:bold; font-size:15px; height:15px;" class="fa fa-edit"></a></td>-->
+                    </tr>
+                </table>
+                <pagination total-items="totalItems" ng-model="currentPage"
+                            max-size="10" boundary-links="true"
+                            items-per-page="numPerPage" class="pagination-sm">
+                </pagination>
+            </div>
+        </div>
+    </div>
+
+</div>

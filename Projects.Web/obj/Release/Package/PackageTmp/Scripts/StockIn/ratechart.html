@@ -1,0 +1,33 @@
+﻿
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <span class="panel-title">Rate Chart</span>
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered table-condensed" style="font-family:Verdana;">
+            <thead style="color:white;background-color:#11273c;">
+                <tr>
+                    <th>Sno</th>
+                    <th>Product</th>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>Rate</th>
+                    <th>Units</th>
+                </tr>
+            </thead>
+            <tbody style="background-color:aliceblue;">
+                <tr ng-repeat="rate in RateChartList">
+                    <td>{{$index+1}}</td>
+                    <td>{{getProductName(rate.product)}}</td>
+                    <td>{{rate.brand}}</td>
+                    <td>{{rate.model}}</td>
+                    <td>                    
+                        <input ng-readonly="canEdit" type="text" ng-model="rate.sale_price" />
+                    <span ng-click="EidtRate(rate)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span ng-show="showSaveBtn" ng-click="UpdateRate(rate)"><i class="fa fa-floppy-o" aria-hidden="true"></i></span>
+                    </td>
+                    <td>{{rate.units}}</td>
+            </tbody>
+        </table>
+    </div>
+</div>

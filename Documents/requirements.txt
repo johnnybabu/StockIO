@@ -1,0 +1,19 @@
+Tables
+--------
+1)Raw Stock(invoices)--5)Items details
+2)Current Stock(transactions)
+3)Company Details
+4)Rate Chart
+6)Sales(invoices)--7)Items details
+8)Supplier Chart
+9)Brands
+
+
+StockIn
+parent table
+invoice no(not null and unique), date,tranport charges,labour charges,supplier
+--not changeble if invoice same
+child table
+invoice no,product details
+
+

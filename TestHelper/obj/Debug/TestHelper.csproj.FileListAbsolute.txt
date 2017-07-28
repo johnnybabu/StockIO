@@ -1,0 +1,13 @@
+C:\TFS-Projects\ProjectManagement\TestHelper\bin\Debug\TestHelper.dll
+C:\TFS-Projects\ProjectManagement\TestHelper\bin\Debug\TestHelper.pdb
+C:\TFS-Projects\ProjectManagement\TestHelper\bin\Debug\Projects.Data.dll
+C:\TFS-Projects\ProjectManagement\TestHelper\bin\Debug\Projects.Entities.dll
+C:\TFS-Projects\ProjectManagement\TestHelper\bin\Debug\EntityFramework.dll
+C:\TFS-Projects\ProjectManagement\TestHelper\bin\Debug\Projects.Data.pdb
+C:\TFS-Projects\ProjectManagement\TestHelper\bin\Debug\Projects.Data.dll.config
+C:\TFS-Projects\ProjectManagement\TestHelper\bin\Debug\Projects.Entities.pdb
+C:\TFS-Projects\ProjectManagement\TestHelper\bin\Debug\EntityFramework.xml
+C:\TFS-Projects\ProjectManagement\TestHelper\obj\Debug\TestHelper.csprojResolveAssemblyReference.cache
+C:\TFS-Projects\ProjectManagement\TestHelper\obj\Debug\TestHelper.dll
+C:\TFS-Projects\ProjectManagement\TestHelper\obj\Debug\TestHelper.pdb
+C:\Z_NagendraFiles\StockIO\StockIO\TestHelper\obj\Debug\TestHelper.csprojResolveAssemblyReference.cache

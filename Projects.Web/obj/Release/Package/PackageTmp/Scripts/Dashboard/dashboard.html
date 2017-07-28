@@ -1,0 +1,86 @@
+﻿
+<script>
+    $('#divTopBar').show();
+    $('#sidebar-wrapper').show();
+    $('#divSideBar').show();
+</script>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-10 col-md-10 col-lg-10">
+                <h3 class="panel-title">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                    Dashboard
+                </h3>                
+            </div>
+            <div class="col-xs-2 col-xs-2 col-lg-2" style="text-align:right;">
+                <span style="float:right;font-weight:500"><a href="/SampleReports"> <input type="button" class="btn-primary" name="Sample Reports" value="Sample Reports"></a></span>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row" style="margin-top:20px;">
+            <div class="col-lg-4">
+                <md-input-container class="md-block">
+                    <label>Select Project</label>
+                    <md-icon class="md-dark" arial-label="project_id" style="color:#ff006e"><i class="fa fa-map-marker" style="font-size: 20px;padding-left: 10px;"></i></md-icon>
+                    <md-select name="project_id" ng-model="project_id" required ng-change="getChartDataByProjId(project_id)">                        
+                        <md-option ng-repeat="project in projectslists" ng-value="project.id">
+                            {{project.project_name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <span style="float:right;">
+                            Police Stations:
+                            <select ng-model="ps" ng-options="ps.id as ps.ps_name for ps in PolicestationList" ng-change="psWiseWP(ps)">
+                                <option value="">All</option>
+                            </select>
+                        </span>
+                        <div ng-show="showWPChart" id="WorkProgressContainer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div ng-show="showIndChart" class="panel panel-primary">
+                    <div class="panel-body" id="InductionContainer" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div ng-show="showIndStatChart" class="panel panel-primary">
+                    <div class="panel-body" id="IndentsStatusContainer" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div ng-show="showLbCertChart" class="panel panel-primary">
+                    <div class="panel-body" id="LaborCertificatesContainer" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div ng-show="showIndCostChart" class="panel panel-primary">
+                    <div class="panel-body" id="SubcontractorIndentCostContainer" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div ng-show="showWpQualChart" class="panel panel-primary">
+                    <div class="panel-body" id="WorkProgressQualityContainer" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div ng-show="showMatrlChart" class="panel panel-primary">
+                <div class="panel-body" id="SCWiseMaterailchart"></div>
+            </div>
+        </div>
+    </div>
+</div>

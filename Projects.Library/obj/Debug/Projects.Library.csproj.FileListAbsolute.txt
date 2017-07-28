@@ -1,0 +1,14 @@
+C:\TFS\ProjectManagement\Projects.Library\bin\Debug\Projects.Library.dll
+C:\TFS\ProjectManagement\Projects.Library\bin\Debug\Projects.Library.pdb
+C:\TFS\ProjectManagement\Projects.Library\obj\Debug\Projects.Library.dll
+C:\TFS\ProjectManagement\Projects.Library\obj\Debug\Projects.Library.pdb
+C:\TFS-Projects\ProjectManagement\Projects.Library\bin\Debug\Projects.Library.dll
+C:\TFS-Projects\ProjectManagement\Projects.Library\bin\Debug\Projects.Library.pdb
+C:\TFS-Projects\ProjectManagement\Projects.Library\obj\Debug\Projects.Library.csprojResolveAssemblyReference.cache
+C:\TFS-Projects\ProjectManagement\Projects.Library\obj\Debug\Projects.Library.dll
+C:\TFS-Projects\ProjectManagement\Projects.Library\obj\Debug\Projects.Library.pdb
+C:\Z_NagendraFiles\StockIO\StockIO\Projects.Library\bin\Debug\Projects.Library.dll
+C:\Z_NagendraFiles\StockIO\StockIO\Projects.Library\bin\Debug\Projects.Library.pdb
+C:\Z_NagendraFiles\StockIO\StockIO\Projects.Library\obj\Debug\Projects.Library.dll
+C:\Z_NagendraFiles\StockIO\StockIO\Projects.Library\obj\Debug\Projects.Library.pdb
+C:\Z_NagendraFiles\StockIO\StockIO\Projects.Library\obj\Debug\Projects.Library.csprojResolveAssemblyReference.cache

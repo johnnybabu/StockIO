@@ -1,0 +1,210 @@
+﻿<style>
+    .anchorhover:hover {
+        color: deepskyblue !important;
+    }
+</style>
+<div class="content-header">
+    <div class="panel-group">
+        <div class="panel panel-default" ng-show="showMMForm">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-lg-10 col-md-10 col-xs-10">
+                        <h3 class="panel-title">
+                            <i class="fa fa-plus-circle" aria-hidden="true" ng-click="showmatform()" tooltip-html-unsafe="add material" tooltip-placement="bottom"></i>
+                            Add Material
+                        </h3>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-xs-2" style="text-align: right;">
+                        <i class="fa fa-expand" aria-hidden="true" ng-click="showmatform()"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <form name="addMaterialForm" novalidate ng-submit="addMaterial()" style="margin-bottom:0px;">
+                    <div id="inputContainer" ng-cloak>
+                        <md-content layout-padding>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <md-input-container class="md-block">
+                                        <label>Project</label>
+                                        <!--<md-icon class="md-dark" arial-label="project_id" style="color:#ff006e"><i class="fa fa-map-marker" style="font-size: 20px;"></i></md-icon>-->
+                                        <md-select name="project_id" ng-model="material.project_id" required ng-change="GetAllJunctions(project)">
+                                            <md-option ng-repeat="project in projectslists" ng-value="project.id">
+                                                {{project.project_name}}
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-messages="addMaterialForm.project_id.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">* Mandatory.</div>
+                                            <div ng-message-exp="['required', 'pattern']">
+                                                10 Chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-lg-4">
+                                    <md-input-container class="md-block">
+                                        <label style="cursor:pointer">Material Name</label>
+                                        <!--<md-icon class="md-dark" arial-label="MaterialName" style="color:#0094ff"><i class="fa fa-user" style="font-size: 20px;"></i></md-icon>-->
+                                        <input required id="materialname" name="material_name" ng-model="material.material_name" ng-blur="checkmaterial()" minlength="4" maxlength="30">
+                                        <div ng-messages="addMaterialForm.materialname.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">*Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                4 to 30 chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-lg-4">
+                                    <md-input-container class="md-block">
+                                        <label style="cursor:pointer">Material Description</label>
+                                        <!--<md-icon class="md-dark" arial-label="MaterialDescription" style="color:#0094ff"><i class="fa fa-file-text" style="font-size: 20px;"></i></md-icon>-->
+                                        <input required id="materialdescription" name="materialdescription" ng-model="material.material_description" minlength="4" maxlength="30">
+                                        <div ng-messages="addMaterialForm.materialdescription.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">*Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                4 to 30 chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <md-input-container class="md-block">
+                                        <label>Unit of measurement</label>
+                                        <!--<md-icon class="md-dark" arial-label="uom" style="color:#4800ff"><i class="fa fa-map-marker" style="font-size: 20px;"></i></md-icon>-->
+                                        <md-select name="uom" ng-readonly="readOnlyStatus" ng-model="material.unit_of_measurement" required>
+                                            <md-option ng-repeat="ref in Refmaster| filter:{ group_id: 12 }" ng-value="ref.id">
+                                                {{ref.reference_value}}
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-messages="addMaterialForm.uom.$error" role="alert">
+                                            <div ng-message="required">* Mandatory.</div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-lg-4">
+                                    <md-input-container class="md-block">
+                                        <label>Material Price (&#x20b9;)</label>
+                                        <!--<md-icon class="md-dark" arial-label="materialprice" style="color:#0094ff"></md-icon>-->
+                                        <input type="number" ng-readonly="readOnlyStatus" required id="materialprice" name="materialprice" ng-model="material.material_price" ng-keypress="limitKeypress($event,material.material_price,10)">
+                                        <div ng-messages="addMaterialForm.materialprice.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">*Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                10 chars
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                        </md-content>
+                    </div>
+                    <div class="panel-footer" style="height:40px; padding-right: 0px; padding-top:5px">
+                        <div class="col-lg-offset-4">
+                            <button class="btn btn-sm btn-info" type="submit">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-lg-10 col-md-10 col-xs-10">
+                        <h3 class="panel-title" style="height: 30px;line-height: 30px;">Material Management Information</h3>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-xs-2" style="text-align: right;">
+                        <button class="btn btn-sm btn-primary" ng-click="showmatform()">Add Material</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top:20px;">
+                <div class="col-lg-4">
+                    <md-input-container class="md-block">
+                        <label>Select Project</label>
+                        <md-icon class="md-dark" arial-label="project_id" style="color:#ff006e"><i class="fa fa-map-marker" style="font-size: 20px;padding-left: 10px;"></i></md-icon>
+                        <md-select name="project_id" ng-model="project_id" required ng-change="getMaterialsByProjId(project_id)">
+                            <md-option ng-repeat="project in projectslists" ng-value="project.id">
+                                {{project.project_name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+            </div>
+            <div class="panel-body" ng-show="showdiv">
+                <form ng-show="MaterialList.length!=0">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                            <input type="text" class="form-control" placeholder="Search" ng-model="filtermaterials">
+                        </div>
+                    </div>
+                </form>
+                <table class="table table-bordered table-striped table-hover table-condensed" ng-show="MaterialList.length!=0">
+                    <thead>
+                        <tr style="background:#808080;color:white;">
+                            <th style="width:2%;text-align:center;">SNo</th>
+                            <th style="width:10%;text-align:center;" rowspan="2">
+                                <a href="#" class="anchorhover" ng-click="sortType = 'material_name'; sortReverse = !sortReverse" style="color:cornsilk;">
+                                    Material Name
+                                </a>
+                            </th>
+                            <th style="width:20%;text-align:center;">
+                                <a href="#" class="anchorhover" ng-click="sortType = 'material_description'; sortReverse = !sortReverse" style="color:cornsilk;">
+                                    Material Description
+                                </a>
+                            </th>
+                            <th style="width:5%;text-align:center;">
+                                <a href="#" class="anchorhover" ng-click="sortType = 'unit_of_measurement'; sortReverse = !sortReverse" style="color:cornsilk;">
+                                    Units
+                                </a>
+                            </th>
+                            <th style="width:5%;text-align:right;">
+                                <a href="#" class="anchorhover" ng-click="sortType = 'material_price'; sortReverse = !sortReverse" style="color:cornsilk;">
+                                    Material Price (&#x20b9;)
+                                </a>
+                            </th>
+                            <th style="width:3%;text-align:center;">Update</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr dir-paginate="materials in MaterialList|filter:filtermaterials|itemsPerPage:page.levels|orderBy:sortType:sortReverse">
+                            <td style="text-align:center;">{{$index+1}}</td>
+                            <td style="text-align:center;">
+                                {{materials.material_name}}
+                            </td>
+                           
+                            <td style="text-align:center;">{{materials.material_description}}</td>
+                            <td style="text-align:center;">{{materials.unit_of_measurement}}</td>
+                            <td style="text-align:right;">
+                                <span editable-text="materials.material_price" e-name="material_price" e-form="rowform" onbeforesave="checkName($data, materials.material_price)" e-required>
+                                    {{materials.material_price}}
+                                </span>
+                            </td>
+                            <td style="white-space: nowrap;text-align:center;">
+                                <form editable-form name="rowform" onbeforesave="saveUser($data, materials.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == materials" style="margin-bottom:0px!important">
+                                    <button type="submit" ng-disabled="rowform.$waiting" class="fa fa-save"
+                                            style="color:#f6bc1b; font-weight:bold; font-size:15px; height:15px;background-color: Transparent; background-repeat:no-repeat; border: none;"></button>
+                                    <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="fa fa-times"
+                                            style="color:#f6bc1b; font-weight:bold; font-size:15px; height:15px;background-color: Transparent; background-repeat:no-repeat; border: none;"></button>
+                                </form>
+                                <div class="buttons" ng-show="!rowform.$visible">
+                                    <button ng-click="rowform.$show()" class="fa fa-edit"
+                                            style="color:#f6bc1b; font-weight:bold; font-size:15px; height:15px;background-color: Transparent; background-repeat:no-repeat; border: none;"></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="row" ng-show="MaterialList.length>3">
+                    <div class="col-lg-10" style="margin-bottom: 0px -35px -13px">
+                        <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true">
+                        </dir-pagination-controls>
+                        <select name="level" ng-model="page.levels" ng-options="obj.value as obj.label for obj in page.levelsArr" style="position: absolute;top: 20px;height: 34px;"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

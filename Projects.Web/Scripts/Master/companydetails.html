@@ -1,0 +1,173 @@
+﻿<style>
+    .anchorhover:hover {
+        color: deepskyblue !important;
+    }
+</style>
+<div class="row">
+    <div class="col-lg-6">        
+        <div class="panel panel-default">           
+            <div class="panel-body">
+                <h4>Enter Company Details</h4>
+                <form name="newCompanyForm" angular-validator-submit="SaveProductDetails()" style="margin-bottom:0px;">
+                    <div id="inputContainer">
+                        <md-content layout-padding>
+                            <div class="row">
+                                <div class="col-lg-10">
+                                    <md-input-container class="md-block">
+                                        <label>Company Name</label>                                        
+                                        <input name="company_name" ng-model="company.company_name" required>
+                                        <div ng-messages="newCompanyForm.company_name.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">* Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Valid Range: 1 to 30 chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-10">
+                                    <md-input-container class="md-block">
+                                        <label>Proprietor</label>
+                                        <input name="proprietor" ng-model="company.proprietor" required>
+                                        <div ng-messages="newCompanyForm.proprietor.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">* Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Valid Range: 1 to 30 chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <md-input-container class="md-block">
+                                        <label>Phone 1</label>
+                                        <!--<md-icon class="md-dark" arial-label="altcontact" style="color:dodgerblue"><i class="fa fa-phone" style="font-size: 20px;"></i></md-icon>-->
+                                        <input mask="+99 9999999999" name="phone_1" ng-model="company.phone_1" minlength="8" maxlength="15">
+                                        <div ng-messages="newCompanyForm.phone_1.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">* Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Valid Range: 1 to 30 chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-lg-5">
+                                    <md-input-container class="md-block">
+                                        <label>Phone 2</label>
+                                        <!--<md-icon class="md-dark" arial-label="altcontact" style="color:dodgerblue"><i class="fa fa-phone" style="font-size: 20px;"></i></md-icon>-->
+                                        <input mask="+99 9999999999" name="phone_2" ng-model="company.phone_2" minlength="8" maxlength="15">
+                                        <div ng-messages="newCompanyForm.phone_2.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">* Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Valid Range: 1 to 30 chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-10">
+                                    <md-input-container class="md-block" style="margin: 3px 0;">
+                                        <label>Email</label>
+                                        <!--<md-icon class="md-dark" arial-label="email" style="color:#ff00dc"><i class="fa fa-envelope" style="font-size: 20px;"></i></md-icon>-->
+                                        <input required id="email" name="email" ng-model="company.email" minlength="5" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+                                        <div ng-messages="newCompanyForm.email.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">*  Valid Email Address is required.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength']">
+                                                Valid Range: 5 to 100 characters.
+                                            </div>
+                                            <div ng-message-exp="['pattern']">
+                                                Please enter valid email address
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-10">
+                                    <md-input-container class="md-block">
+                                        <label>Street</label>
+                                        <input name="street" ng-model="company.street" required>
+                                        <div ng-messages="newCompanyForm.street.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">* Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Valid Range: 1 to 30 chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <md-input-container class="md-block">
+                                        <label>City</label>
+                                        <input name="city" ng-model="company.city" required>
+                                        <div ng-messages="newCompanyForm.city.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">* Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Valid Range: 1 to 30 chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-lg-5">
+                                    <md-input-container class="md-block">
+                                        <label>State</label>
+                                        <input name="state" ng-model="company.state" required>
+                                        <div ng-messages="newCompanyForm.state.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">* Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Valid Range: 1 to 30 chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <md-input-container class="md-block">
+                                        <label>Country</label>
+                                        <input name="country" ng-model="company.country" required>
+                                        <div ng-messages="newCompanyForm.country.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">* Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Valid Range: 1 to 30 chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-lg-5">
+                                    <md-input-container class="md-block">
+                                        <label>Postal Code</label>
+                                        <input mask="999999" name="postal_code" ng-model="company.postal_code" required>
+                                        <div ng-messages="newCompanyForm.postal_code.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">* Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Valid Range: 1 to 30 chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-10" style="text-align:right;">
+                                    <button class="btn btn-sm btn-primary" type="submit">Save Details</button>
+                                </div>
+                            </div>
+                        </md-content>
+                    </div>
+                </form>
+            </div>            
+        </div>
+    </div>    
+
+    <div class="col-lg-6">
+        <div class="panel panel-default">           
+            <div class="panel-body">
+                <h4>Company Details</h4>                                            
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+﻿
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="panel-title">Current Stock Details</span>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered table-condensed" style="font-family:Verdana;">
+                <thead style="color:white;background-color:#11273c;">
+                    <tr>
+                        <th>Sno</th>
+                        <th>Category</th>
+                        <th>Sub Category</th>
+                        <th>Product</th>
+                        <th>Brand</th>
+                        <th>Model</th>
+                        <th>Quantity</th>
+                        <th>Units</th>                        
+                    </tr>
+                </thead>
+                <tbody style="background-color:aliceblue;">
+                    <tr ng-repeat="cstock in CurrentStockList">
+                        <td>{{$index+1}}</td>
+                        <td>{{cstock.category}}</td>
+                        <td>{{cstock.sub_category}}</td>
+                        <td>{{getProductName(cstock.product)}}</td>
+                        <td>{{cstock.brand}}</td>
+                        <td>{{cstock.model}}</td>
+                        <td>{{cstock.quantity}}</td>
+                        <td>{{cstock.units}}<span ng-if="cstock.quantity>1">s</span></td>
+                </tbody>
+            </table>
+        </div>
+    </div>

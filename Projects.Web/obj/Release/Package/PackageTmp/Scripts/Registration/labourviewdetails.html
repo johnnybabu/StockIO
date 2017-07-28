@@ -1,0 +1,179 @@
+﻿<style>
+    .modal-dialog {
+        width: 56% !important;
+    }
+
+    select {
+        width: 100% !important;
+        border-radius: 3px;
+    }
+
+    .modal-content {
+        border-radius: 6px !important;
+        border: none;
+        margin: -3px 0px 0px 0px;
+        padding: 0 0 200px 0px;
+        height:70% 
+}
+    }
+
+    .modal-header {
+        background-color: #1F32FF;
+        color: #FFFFFF;
+        border-radius: 6px 6px 0px 0px !important;
+    }
+</style>
+
+
+
+<div role="document" id="clientpopup">
+    <div>
+        <div class="modal-header" style="padding-top:10px;background-color: rgba(0, 0, 0, 0.2);">
+            <button data-dismiss="modal" style="background-color:red;" ng-click="closeclientmodal()" type="button" class="close">x</button>
+            <h3 class="modal-title" id="myModalLabel">Labour Details</h3>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-sm-5">
+                    <label style="font-size:15px;margin: 0 0 0 78px;">Name:</label>
+                    <span style="border-radius:50px; margin: 0px 0px 0px 42px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        {{labors.name}}
+                    </span>
+                </div>
+            </div>
+
+
+            <div class="row" style="margin: 18px 0 0 0;">
+                <div class="col-sm-5">
+                    Project:
+                    <span style="border-radius:50px; margin: 0px 0px 0px 140px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        {{labors.projectname}}
+                    </span>
+                </div>
+                <div class="col-sm-5">
+                    <span style="margin: 0 0 0 0;">SubContractor:</span>
+                    <span style="border-radius:50px; margin: 0px 0px 0px 72px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        {{labors.subcontractorname}}
+                    </span>
+                </div>
+            </div>
+
+
+        
+            <div class="row" style="margin: 18px 0 0 0;">
+                <div class="col-sm-5">
+                    Father Name:
+                    <span style="border-radius:50px; margin: 0px 0px 0px 91px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        {{labors.fathers_name}}
+                    </span>
+                </div>
+
+
+                <div class="col-sm-6">
+                    Data OF Birth:
+                    <span style="border-radius:50px; margin: 0px 0px 0px 42px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        {{labors.age}}
+                    </span>
+                </div>
+            </div>
+            <div class="row" style="margin: 18px 0 0 0;">
+                <div class="col-sm-5">
+                    Aadhar NO:
+                    <span style="border-radius:50px; margin: 0px 0px 0px 55px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        {{labors.aadhar}}
+                    </span>
+                </div>
+
+
+                <div class="col-sm-5">
+                    Pan No:
+                    <span style="border-radius:50px; margin: 0px 0px 0px 130px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        {{labors.pan}}
+                    </span>
+                </div>
+            </div>
+            <div class="row" style="margin: 18px 0 0 0;">
+                <div class="col-sm-5">
+                    Contact No:
+                    <span style="border-radius:50px; margin: 0px 0px 0px 53px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        {{labors.current_contact_number}}
+                    </span>
+                </div>
+
+                <div class="col-sm-5">
+                    E.P.F No:
+                    <span style="border-radius:50px; margin: 0px 0px 0px 100px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        {{labors.epf_no}}
+                    </span>
+                </div>
+            </div>
+    
+            <div class="row" style="margin: 18px 0 0 0;">
+        <div class="col-sm-5">
+            E.S.I No:
+            <span style="border-radius:50px; margin: 0px 0px 0px 72px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                {{labors.esi_no}}
+            </span>
+        </div>
+        <div class="col-sm-5">
+            City:
+            <span style="border-radius:50px; margin: 0px 0px 0px 190px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                {{labors.current_city}}
+            </span>
+        </div>
+    </div>
+            <div class="row" style="margin: 18px 0 0 0;">
+                <div class="col-sm-6">
+                    Bank Name:
+                    <span style="border-radius:50px; margin: 0px 0px 0px 42px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        {{labors.bank_name}}
+                    </span>
+                </div>
+
+
+                <div class="col-sm-5">
+                    <span style="margin: 0 0 0 -61px;">  Branch:</span>
+                    <span style="border-radius:50px; margin: 0px 0px 0px 130px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        {{labors.bank_branch}}
+                    </span>
+                </div>
+
+            </div>
+            <div class="row" style="margin: 18px 0 0 0;">
+                <div class="col-sm-5">
+                    Created By:
+                    <span style="border-radius:50px; margin: 0px 0px 0px 42px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        {{labors.created_by}}
+                    </span>
+                </div>
+
+
+                <div class="col-sm-5">
+                    Date_Created:
+                    <span style="border-radius:50px; margin: 0px 0px 0px 73px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        {{labors.created_date| date :  "MMM d, y"}}
+                    </span>
+                </div>
+            </div>
+            <div class="row" style="margin: 18px 0 0 0;">
+                <div class="col-sm-6">
+                    Aadhar file:
+                    <span style="border-radius:50px; margin: 0px 0px 0px 42px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        <a target="_self" href="" ng-click="downLoadImage(labors.aadhar_encode,labors.aadhar_encode_file_type)"> {{labors.aadhar_filename}}</a>
+                    </span>
+                    <!--<td style="text-align: center;"><i class="fa fa-file-pdf-o" aria-hidden="true" style="font-size:20px;color: #000000;"></i></a></td>-->
+                </div>
+
+
+                <div class="col-sm-5">
+                    filetype:
+                    <span style="border-radius:50px; margin: 0px 0px 0px 42px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        {{labors.aadhar_encode_file_type}}
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+ </div>
+

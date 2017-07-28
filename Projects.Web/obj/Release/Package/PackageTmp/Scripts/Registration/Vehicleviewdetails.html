@@ -1,0 +1,191 @@
+﻿<style>
+    .modal-dialog {
+        width: 56% !important;
+       
+    }
+
+    select {
+        width: 100% !important;
+        border-radius: 3px;
+    }
+
+    .modal-content {
+        border-radius: 6px !important;
+        border: none;
+        margin: -3px 0px 0px 0px;
+        padding: 0 0 200px 0px;
+         height:70% !important;
+    }
+
+    }
+
+    .modal-header {
+        background-color: #1F32FF;
+        color: #FFFFFF;
+        border-radius: 6px 6px 0px 0px !important;
+    }
+</style>
+
+
+
+<div role="document" id="clientpopup">
+    <div>
+        <div class="modal-header" style="padding-top:10px;background-color: rgba(0, 0, 0, 0.2);">
+            <button data-dismiss="modal" style="background-color:red;" ng-click="closeclientmodal()" type="button" class="close">x</button>
+            <h3 class="modal-title" id="myModalLabel">vehicle Details</h3>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-sm-5">
+                    <label style="font-size:15px;margin: 0 0 0 13px;">Vehicle Reg No:</label>
+                    <span style="border-radius:50px; margin: 0px 0px 0px 55px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        {{vehicle.vehicle_reg_no}}
+                    </span>
+                </div>
+                <div class="col-sm-5">
+                    <label style="font-size:15px;margin: 0 0 0 4px;">Vehicle type:</label>
+                    <span style="border-radius:50px; margin: 0px 0px 0px 91px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        {{vehicle.vehiclename}}
+                    </span>
+                </div>
+            </div>
+
+
+            <div class="row" style="margin: 18px 0 0 0;">
+                <div class="col-sm-5">
+                    Project:
+                    <span style="border-radius:50px; margin: 0px 0px 0px 131px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        {{vehicle.projectname}}
+                    </span>
+                </div>
+                <div class="col-sm-5">
+                    <span style="margin: 0 0 0 0px;">SubContractor:</span>
+                    <span style="border-radius:50px; margin: 0px 0px 0px 72px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        {{vehicle.subcontractorname}}
+                    </span>
+                </div>
+            </div>
+
+
+
+            <div class="row" style="margin: 18px 0 0 0;">
+                <div class="col-sm-5">
+                   Driver Name:
+                    <span style="border-radius:50px; margin: 0px 0px 0px 63px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        {{vehicle.driver_name}}
+                    </span>
+                </div>
+
+
+                <div class="col-sm-6">
+                    Driver Contact No:
+                    <span style="border-radius:50px; margin: 0px 0px 0px 47px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        {{vehicle.driver_contact_no}}
+                    </span>
+                </div>
+            </div>
+            <div class="row" style="margin: 18px 0 0 0;">
+                <div class="col-sm-5">
+                    Aadhar NO:
+                    <span style="border-radius:50px; margin: 0px 0px 0px 60px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        {{vehicle.driver_aadharnumber}}
+                    </span>
+                </div>
+
+
+                <!--<div class="col-sm-5">
+                    Aadhar File:
+                    <span style="border-radius:50px; margin: 0px 0px 0px 42px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        {{vehicle.pan}}
+                    </span>
+                </div>-->
+            </div>
+            <div class="row" style="margin: 18px 0 0 0;">
+                <div class="col-sm-5">
+                    Licence No:
+                    <span style="border-radius:50px; margin: 0px 0px 0px 64px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        {{vehicle.driver_lic_no}}
+                    </span>
+                </div>
+
+                <div class="col-sm-5">
+                    Licence Validity:
+                    <span style="border-radius:50px; margin: 0px 0px 0px 65px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        {{vehicle.driver_lic_validdate| date :  "MMM d, y"}}
+                    </span>
+                </div>
+            </div>
+
+            <div class="row" style="margin: 18px 0 0 0;">
+                <div class="col-sm-5">
+                    Licence File:
+                    <span style="border-radius:50px; margin: 0px 0px 0px 42px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        <a target="_self" href="" ng-click="downLoadImage(vehicle.driverlicimage,vehicle.driverlicimage_filetype)"> {{vehicle.driver_lic_filename}}</a>
+                     </span>
+                    
+                </div>
+                <div class="col-sm-5">
+                   Filetype:
+                    <span style="border-radius:50px; margin: 0px 0px 0px 95px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        {{vehicle.driverlicimage_filetype}}
+                    </span>
+                </div>
+            </div>
+            <div class="row" style="margin: 18px 0 0 0;">
+                <div class="col-sm-6">
+                    Pollution Validity:
+                    <span style="border-radius:50px; margin: 0px 0px 0px 42px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        {{vehicle.pollution_validdate| date :  "MMM d, y"}}
+                    </span>
+                </div>
+
+
+                <div class="col-sm-5">
+                    <span style="margin: 0 0 0 -60px;"> File:</span> 
+                    <span style="border-radius:50px; margin: 0px 0px 0px 44px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        <a target="_self" href="" ng-click="downLoadImage(vehicle.pollutionimage, vehicle.pollutionimage_filetype)">{{vehicle.pollution_filename}}</a>
+                         
+                    </span>
+                </div>
+
+            </div>
+            <div class="row" style="margin: 18px 0 0 0;">
+                <div class="col-sm-5">
+                    Insurance Validity:
+                    <span style="border-radius:50px; margin: 0px 0px 0px 42px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        {{vehicle.insurence_validdate| date :  "MMM d, y"}}
+                    </span>
+                </div>
+
+
+                <div class="col-sm-5">
+                    File:
+                    <span style="border-radius:50px; margin: 0px 0px 0px 44px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        <a target="_self" href="" ng-click="downLoadImage(vehicle.insurenceimage, vehicle.insurenceimage_filetype)">{{vehicle.insurence_filename}}</a>
+                      
+                    </span>
+                </div>
+            </div>
+            <div class="row" style="margin: 18px 0 0 0;">
+                <div class="col-sm-5">
+                    Fitness Validity:
+                    <span style="border-radius:50px; margin: 0px 0px 0px 42px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        {{vehicle.fitness_validdate| date :  "MMM d, y"}}
+                    </span>
+                </div>
+
+
+                <div class="col-sm-5">
+                    File:
+                    <span style="border-radius:50px; margin: 0px 0px 0px 44px; background-color:rgba(220, 210, 183, 0.53); font-weight:bold; border-color:#b3b3b2; padding:4px 10px; color: #0a0a0a; text-align:left!important;">
+                        <a target="_self" href="" ng-click="downLoadImage(vehicle.fitnessimage,vehicle.fitnessimage_filetype)">{{vehicle.fitness_filename}}</a>
+                        
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

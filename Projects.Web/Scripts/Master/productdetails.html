@@ -1,0 +1,111 @@
+﻿<style>
+    .anchorhover:hover {
+        color: deepskyblue !important;
+    }
+</style>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h4>Enter Product Details</h4>
+                <form name="newProductForm" novalidate ng-submit="SaveProduct()" style="margin-bottom:0px;">
+                    <div id="inputContainer">
+                        <md-content layout-padding>
+                            <div class="row">
+                                <div class="col-lg-10">
+                                    <md-input-container class="md-block">
+                                        <label>Product Name</label>
+                                        <input name="product_name" ng-model="product.product_name" required>
+                                        <div ng-messages="newProductForm.product_name.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">* Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Valid Range: 1 to 30 chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-10">
+                                    <md-input-container class="md-block">
+                                        <label>Product Code</label>
+                                        <input name="product_code" ng-model="product.product_code" required>
+                                        <div ng-messages="newCompanyForm.product_code.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">* Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Valid Range: 1 to 30 chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <md-input-container class="md-block">
+                                        <label>Category</label>
+                                        <input name="category" ng-model="product.category" required>
+                                        <div ng-messages="newCompanyForm.category.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">* Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Valid Range: 1 to 30 chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-lg-5">
+                                    <md-input-container class="md-block">
+                                        <label>Sub Category</label>
+                                        <input name="sub_category" ng-model="product.sub_category">
+                                        <div ng-messages="newCompanyForm.category.$error" role="alert" class="ng-messages">
+                                            <div ng-message="required">* Mandatory.</div>
+                                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                                Valid Range: 1 to 30 chars.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>                                                                             
+                            <div class="row">
+                                <div class="col-lg-10" style="text-align:right;">
+                                    <button class="btn btn-sm btn-primary" type="submit">Save Product</button>
+                                </div>
+                            </div>
+                        </md-content>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h4>Product Details</h4>
+                <table class="table table-bordered table-condensed" >
+                    <thead style="color:white;background-color:#11273c;">
+                        <tr>
+                            <th>Sno</th>
+                            <th>Product Code</th>
+                            <th>Product Name</th>
+                            <th>Category</th>
+                            <th>SubCategory</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody style="background-color:aliceblue;">
+                        <tr ng-repeat="product in productsList">
+                            <td>{{$index+1}}</td>
+                            <td>{{product.product_code}}</td>
+                            <td>{{product.product_name}}</td>
+                            <td>{{product.category}}</td>
+                            <td>{{product.sub_category}}</td>
+                            <td><span ng-click="updateProduct(product)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></td>
+                            <td><span ng-click="deleteProduct(product)"><i class="fa fa-trash" aria-hidden="true"></i></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

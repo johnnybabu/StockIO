@@ -1,0 +1,311 @@
+﻿<style>
+    .ng-show {
+        height: 0;
+        width: 0;
+        background-color: transparent;
+        top: -200px;
+        left: 200px;
+    }
+</style>
+
+
+<div class="page">
+    <div class="panel panel-default" ng-show="showEmpList">
+        <div class="panel-heading">
+            <h3 class="panel-title">Employees List</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-condensed table-striped table-bordered">
+                <tr style="background:#808080;">
+                    <th style="width:2%;">Sno</th>
+                    <!--<th style="width:5%;">EmpCode</th>-->
+                    <th style="width:8%;">UserName</th>
+                    <th style="width:5%;">Role</th>
+                    <th style="width:5%;">Created Status</th>
+                    <th style="width:2%;text-align:center;">Create User</th>
+                </tr>
+                <tbody>
+                    <tr ng-repeat="emp in EmployeesList">
+                        <td>{{$index+1}}</td>
+                        <td>{{emp.UserName}}</td>
+                        <td>{{emp.Role}}</td>
+                        <td>{{}}</td>
+                        <td style="text-align:center;" ng-click="CreateUser(emp)"><span style=""><i class="fa fa-dot-circle-o fa-lg fa-border" style="color:green;" aria-hidden="true"></i></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--ng-show="showUserRegForm"-->
+    <div  id="userForm" class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">New User Registeration</h3>
+        </div>
+        <form name="newUserForm" novalidate ng-submit="registerNewUser()" style="margin-bottom:0px;">
+            <div class="panel-body">
+                <div id="inputContainer" class="col-md-12" style="padding-left:10px" ng-cloak>
+                    <md-content layout-padding>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <md-input-container class="md-block">
+                                    <label>User ID</label>
+                                    <!--<md-icon class="md-dark" arial-label="userid" style="color:#0094ff"><i class="fa fa-user" style="font-size: 20px;"></i></md-icon>-->
+                                    <input required id="userid" name="userid" ng-model="newUser.userid" minlength="4" maxlength="50">
+                                    <div ng-messages="newUserForm.userid.$error" role="alert" class="ng-messages">
+                                        <div ng-message="required">*Mandatory.</div>
+                                        <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                            4 to 50 chars.
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <md-input-container class="md-block">
+                                    <label>Password</label>
+                                    <!--<md-icon class="md-dark" arial-label="pwd" style="color:#0094ff"><i class="fa fa-key" style="font-size: 20px;"></i></md-icon>-->
+                                    <input type="password" required id="pwd" name="pwd" ng-model="newUser.pwd" minlength="4" maxlength="15">
+                                    <div ng-messages="newUserForm.pwd.$error" role="alert" class="ng-messages">
+                                        <div ng-message="required">*Mandatory.</div>
+                                        <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                            4 to 15 chars.
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <md-input-container class="md-block">
+                                    <label>Confirm Password</label>
+                                    <!--<md-icon class="md-dark" arial-label="pwd" style="color:#0094ff"><i class="fa fa-key" style="font-size: 20px;"></i></md-icon>-->
+                                    <input type="password" required id="confpwd" name="confpwd" ng-pattern="{{newUser.pwd}}" ng-model="newUser.confpwd" minlength="4" maxlength="15">
+                                    <div ng-messages="newUserForm.confpwd.$error" role="alert" class="ng-messages">
+                                        <div ng-message="required">*Mandatory.</div>
+                                        <div ng-message="pattern">Password and Confirm Password not matched.</div>
+                                        <div ng-message-exp="['minlength', 'maxlength']">
+                                            4 to 15 chars.
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <md-input-container class="md-block">
+                                    <label>User Name</label>
+                                    <!--<md-icon class="md-dark" arial-label="username" style="color:#0094ff"><i class="fa fa-male" style="font-size: 20px;"></i></md-icon>-->
+                                    <input required id="username" name="username" ng-model="newUser.username" minlength="4" maxlength="50">
+                                    <div ng-messages="newUserForm.username.$error" role="alert" class="ng-messages">
+                                        <div ng-message="required">*Mandatory.</div>
+                                        <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                            4 to 50 chars.
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <md-input-container class="md-block" style="margin: 10px 0;">
+                                    <label>Email</label>
+                                    <!--<md-icon class="md-dark" arial-label="email" style="color:#ff00dc"><i class="fa fa-envelope" style="font-size: 20px;"></i></md-icon>-->
+                                    <input required id="email" name="email" ng-model="newUser.email" minlength="5" maxlength="30" ng-pattern="/^.+@.+\..+$/" style="text-transform: lowercase;">
+                                    <div ng-messages="newUserForm.email.$error" role="alert" class="ng-messages">
+                                        <div ng-message="required">*  Valid Email Address is required.</div>
+                                        <div ng-message-exp="['required', 'minlength', 'maxlength']">
+                                            Valid Range: 5 to 30 characters.
+                                        </div>
+                                        <div ng-message-exp="['pattern']">
+                                            Please enter valid email address.
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <md-input-container class="md-block">
+                                    <label>User Role</label>
+                                    <!--<md-icon class="md-dark" arial-label="role" style="color:#0094ff"><i class="fa fa-navicon" style="font-size: 20px;"></i></md-icon>-->
+                                    <md-select name="role" ng-model="roles" required>
+                                        <md-option ng-repeat="roles in rolesList" ng-value="roles">
+                                            {{roles.Name}}
+                                        </md-option>
+                                    </md-select>
+                                    <div ng-messages="newUserForm.role.$error" role="alert">
+                                        <div ng-message="required">* Mandatory.</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </md-content>
+                </div>
+            </div>
+            <div class="panel-footer" style="height:40px; padding-right: 0px; padding-top:5px">
+
+                <div class="col-md-4">
+                    <span style="font-size:10px">
+                        <input type="checkbox" checked="checked" ng-model="newUser.mail2tenant">
+                        Send Registration Email to the Tenant as CC?
+                    </span>
+                </div>
+                <div class="col-md-4">
+                    <span style="font-size:10px">
+                        <input type="checkbox" checked="checked" ng-model="newUser.mail2user">
+                        Send Registration Email to the User?
+                    </span>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-sm btn-info" type="submit">Register User</button>
+                    <input ng-click="hideUserForm()" type="button" class="btn btn-sm btn-warning" value="Cancel" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 5px 15px;">
+            <table>
+                <tr>
+                    <td style="width:96%"><h3 class="panel-title">My Users </h3></td>
+                    <!--<td style="width:10%; text-align:right"><button class="btn btn-sm btn-info" ng-click="toggle = !toggle">{{toggleText}}</button></td>-->
+                </tr>
+            </table>
+        </div>
+        <div class="panel-body" style="padding:0px">
+            <div class="col-md-12" style="padding-top:5px!important">
+                <table class="table table-condensed table-bordered" style="table-layout: fixed; margin-bottom:0px">
+                    <tr style="background:#48cbb7">
+                        <th style="width:3%">SN</th>
+                        <th style="width:12%">User ID</th>
+                        <th style="width:16%">Name</th>
+                        <th style="width:20%">Email</th>
+                        <th style="width:11%">Role</th>
+                        <th style="width:6%">Blocked?</th>
+                        <th style="width:8%">Created</th>
+                        <th style="width:8%">Last Modified</th>
+                        <th style="width:4%">Block</th>
+                        <th style="width:5%">Reset</th>
+                        <th style="width:7%">Edit</th>
+                    </tr>
+                    <tbody>
+                        <tr ng-repeat="mu in myUsers">
+                            <td style="text-align:center; vertical-align:middle;"> {{$index + 1}} </td>
+                            <td style="vertical-align:middle;">
+                                {{mu.userid}}
+                            </td>
+                            <td style="vertical-align:middle;">
+                                <span editable-text="mu.user_name" e-name="mUserName" e-form="rowform" onbeforesave="checkName($data, mu.user_name)" e-required>
+                                    {{mu.user_name}}
+                                </span>
+
+                            </td>
+                            <td style="vertical-align:middle;">
+                                <span editable-text="mu.email" e-name="mEmail" e-form="rowform" onbeforesave="checkName($data, mu.email)" e-required>
+                                    {{mu.email}}
+                                </span>
+                            </td>
+                            <td style="vertical-align:middle">
+                                <span editable-select="mu.roleid" e-name="mRole" e-form="rowform" e-ng-options="r.id as r.Name for r in rolesList" onbeforesave="checkName($data, r.id)">
+                                    {{ showRole(mu.roleid) }}
+                                </span>
+                            </td>
+                            <td style="text-align:center; vertical-align:middle;">{{mu.IsLocked}}</td>
+                            <td>{{mu.DateCreated | date:'dd-MMM-yyyy HH:mm:ss'}}</td>
+                            <td>{{mu.DateModified | date:'dd-MMM-yyyy HH:mm:ss'}}</td>
+                            <td style="text-align:center; vertical-align:middle; font-size:15px;">
+                                <button style="background:none; border:none;"><i class="fa fa-user-times"></i></button>
+                            </td>
+                            <td style="text-align:center; vertical-align:middle; font-size:15px;">
+                                <button style="background:none; border:none;"><i class="fa fa-unlock-alt"></i></button>
+                            </td>
+                            <td style="text-align:center; vertical-align:middle; font-size:15px;">
+                                <form editable-form name="rowform" onbeforesave="updateUser($data, mu.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == mu" style="margin-bottom:0px!important">
+                                    <button type="submit" ng-disabled="rowform.$waiting" class="fa fa-save"
+                                            style="background-color: Transparent; background-repeat:no-repeat; border: none; overflow: hidden; outline:none; font-size:15px;"></button>
+                                    <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="fa fa-times"
+                                            style="background-color: Transparent; background-repeat:no-repeat; border: none; overflow: hidden; outline:none; font-size:15px;"></button>
+                                </form>
+                                <div class="buttons" ng-show="!rowform.$visible">
+                                    <button ng-click="rowform.$show()" class="fa fa-edit"
+                                            style="background-color: Transparent; background-repeat:no-repeat; border: none; overflow: hidden; outline:none; font-size:15px;"></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <table>
+                <tr>
+                    <td style="width:96%"><h3 class="panel-title">User Access Control </h3></td>
+                    <td style="width:10%; text-align:right"><button class="btn btn-sm btn-info" ng-click="SaveMenuAccess()">Save</button></td>
+                </tr>
+            </table>
+        </div>
+        <div class="panel-body" style="padding:0px">
+            <div>
+                <div class="col-lg-4">
+                    <md-input-container class="md-block">
+                        <label>Select User</label>
+                        <md-icon class="md-dark" arial-label="role" style="color:darkorange"><i class="fa fa-navicon" style="font-size: 20px;"></i></md-icon>
+                        <md-select name="role" ng-model="userSelected" required ng-change="LoadUserMenuAccess(userSelected.id)">
+                            <md-option ng-repeat="mu in myUsers" ng-value="mu">
+                                {{mu.userid}}
+                            </md-option>
+                        </md-select>
+                        <div ng-messages="newUserForm.role.$error" role="alert">
+                            <div ng-message="required">* Mandatory.</div>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+
+            <div class="col-md-6" style="padding-top:5px!important">
+                <table class="table table-condensed" style="table-layout: fixed; width: 100%; font-size:12px">
+                    <tr ng-repeat-start="mainmenu in mainMenuList = (TenantMenuList | filter: {parent_menu: 0}: true)" style="background:none">
+                        <td style="width:30px; vertical-align:middle; border-color:black; border:solid 0px;">
+                            <button ng-click="expanded = !expanded" expand>
+                                <span ng-bind="expanded ? '-' : '+'"></span>
+                            </button>
+                        </td>
+                        <td style="text-align:center; width:30px;">
+                            <input type="checkbox" ng-checked="mainmenu.is_access" ng-model="mainmenu.is_access" />
+                        </td>
+                        <td style="width:95%; vertical-align:middle; border-color:black; border:solid 0px; font-weight:bold">
+                            {{mainmenu.name}}
+                            <span class="badgeTwo">{{subMenuList.length}}</span>
+                        </td>
+                    </tr>
+                    <tr ng-repeat-end ng-show="expanded">
+                        <td ng-show="subMenuList.length"></td>
+                        <td ng-show="subMenuList.length"></td>
+                        <td ng-show="subMenuList.length">
+                            <table class="table table-condensed table-bordered" style="table-layout: fixed; margin-bottom:0px">
+                                <tr style="background:#48cbb7">
+                                    <th style="width:5%">SN</th>
+                                    <th style="width:30%">Menu</th>
+                                    <th style="width:5%">Access</th>
+                                </tr>
+                                <tbody>
+                                    <tr ng-repeat="smenu in subMenuList = (TenantMenuList | filter: {parent_menu: mainmenu.id}: true)">
+                                        <td> {{$index + 1}}</td>
+                                        <td>{{smenu.name}} </td>
+                                        <td style="text-align:center;">
+                                            <input type="checkbox" ng-checked="smenu.is_access" ng-model="smenu.is_access" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
